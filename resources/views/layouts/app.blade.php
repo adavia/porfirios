@@ -16,11 +16,11 @@
   <body>
     @include('layouts.common.overlay')
     <header>
-      <a href="{{route("home")}}">
+      <a href="{{ route("home") }}">
         <img src="/images/logo.png" class="mx-auto d-block" alt="Logo Porfirios">
       </a>
     </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-main">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-main">
       <button class="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -33,22 +33,28 @@
       <div class="collapse navbar-collapse justify-content-center" id="nav-dropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">MENÚ <span class="sr-only">(current)</span></a>
+            <a class="nav-link" data-behavior="anchor-link"
+              href="{{ route("home")."#menu" }}">MENÚ <span class="sr-only">(current)</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">RESERVACIONES</a>
+            <a class="nav-link" data-behavior="anchor-link"
+              href="{{ route("home")."#reservations" }}">RESERVACIONES
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route("groups")}}">GRUPOS</a>
+            <a class="nav-link" href="{{ route("groups") }}">GRUPOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route("events")}}">EVENTOS</a>
+            <a class="nav-link" href="{{ route("events") }}">EVENTOS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route("gallery")}}">GALERÍA</a>
+            <a class="nav-link" href="{{ route("gallery") }}">GALERÍA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">SUCURSALES</a>
+            <a class="nav-link" data-behavior="anchor-link"
+              href="{{ route("home")."#locations" }}">SUCURSALES
+            </a>
           </li>
         </ul>
       </div>
@@ -81,6 +87,6 @@
     </footer>
   </body>
   <!-- Scripts -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVRXM9nYKwEen8JeFFi7WgC_9foBNDEVQ"></script>
   <script src="{{ asset('js/app.js') }}"></script>
+  @yield("scripts")
 </html>
