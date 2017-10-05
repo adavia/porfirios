@@ -9369,6 +9369,11 @@ nav {
 
 .reservations .col-sm-6:first-child form {
   padding: 0 3rem 1.5rem 3rem;
+  /* WebKit, Blink, Edge */
+  /* Mozilla Firefox 4 to 18 */
+  /* Mozilla Firefox 19+ */
+  /* Internet Explorer 10-11 */
+  /* Microsoft Edge */
 }
 
 .reservations .col-sm-6:first-child form .input-group-addon {
@@ -9380,7 +9385,27 @@ nav {
 }
 
 .reservations .col-sm-6:first-child form select option {
-  color: #222 !important;
+  color: #D2D2D2 !important;
+}
+
+.reservations .col-sm-6:first-child form .form-control::-webkit-input-placeholder {
+  color: #D2D2D2;
+}
+
+.reservations .col-sm-6:first-child form .form-control:-moz-placeholder {
+  color: #D2D2D2;
+}
+
+.reservations .col-sm-6:first-child form .form-control::-moz-placeholder {
+  color: #D2D2D2;
+}
+
+.reservations .col-sm-6:first-child form .form-control:-ms-input-placeholder {
+  color: #D2D2D2;
+}
+
+.reservations .col-sm-6:first-child form .form-control::-ms-input-placeholder {
+  color: #D2D2D2;
 }
 
 .reservations .col-sm-6:last-child {

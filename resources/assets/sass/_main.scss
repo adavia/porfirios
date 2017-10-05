@@ -155,8 +155,13 @@ nav {
         cursor: pointer;
       }
       select option {
-        color: #222 !important;
+        color: #D2D2D2 !important;
       }
+      .form-control::-webkit-input-placeholder { color: #D2D2D2; }  /* WebKit, Blink, Edge */
+      .form-control:-moz-placeholder { color: #D2D2D2; }  /* Mozilla Firefox 4 to 18 */
+      .form-control::-moz-placeholder { color: #D2D2D2; }  /* Mozilla Firefox 19+ */
+      .form-control:-ms-input-placeholder { color: #D2D2D2; }  /* Internet Explorer 10-11 */
+      .form-control::-ms-input-placeholder { color: #D2D2D2; }  /* Microsoft Edge */
     }
   }
   .col-sm-6:last-child {
