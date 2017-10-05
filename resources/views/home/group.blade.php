@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Grupos')
+
 @section('content')
   <section class="groups">
     <div class="container-fluid">

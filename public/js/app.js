@@ -35598,20 +35598,47 @@ module.exports = function(module) {
  */
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
+var Gallery = __webpack_require__("./resources/assets/js/gallery.js");
 
-$(window).on('load', function () {
-  $('.cover').fadeOut(1000, function () {
-    $(this).remove();
-  });
-});
+// Using the module pattern for a jQuery feature
 
-$(document).on('click', '[data-behavior~=anchor-link]', function (event) {
-  if (window.location.hash) {
-    $('html, body').animate({
-      scrollTop: $(this.hash).offset().top
-    }, 500);
-  }
-});
+var Home = function () {
+  var body = $(".view-home");
+  var links = $("[data-behavior~=anchor-link]");
+  var cover = $(".cover");
+
+  var init = function init() {
+    $(window).on("load", coverFadeOut);
+    if (body.length > 0) {
+      scrollDown();
+    }
+  };
+
+  var coverFadeOut = function coverFadeOut() {
+    cover.fadeOut(1000, function () {
+      $(this).remove();
+    });
+  };
+
+  var scrollDown = function scrollDown() {
+    links.click(animateScroll);
+  };
+
+  var animateScroll = function animateScroll(event) {
+    if ($(this.hash)) {
+      $("html, body").animate({
+        scrollTop: $(this.hash).offset().top
+      }, 500);
+    }
+  };
+
+  return {
+    init: init
+  };
+}();
+
+Home.init();
+Gallery.init();
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
@@ -35678,6 +35705,47 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
+/***/ "./resources/assets/js/gallery.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {var Gallery = function () {
+  var body = $(".view-gallery");
+  var token = "196483102.3a81a9f.2ad98eb1df794a73978cfeb16867e94c";
+  var id = "196483102";
+  var numberPhotos = 20;
+  var baseUrl = "https://api.instagram.com/v1/users/";
+  var gallery = $("[data-behavior~=gallery-wrapper]");
+
+  var init = function init() {
+    if (body.length > 0) {
+      $.ajax({
+        url: "" + baseUrl + id + "/media/recent",
+        dataType: "jsonp",
+        type: "GET",
+        data: { access_token: token, count: numberPhotos },
+        success: function success(data) {
+          for (x in data.data) {
+            gallery.append("\n              <div class=\"col-sm-3\">\n                <img src=\"" + data.data[x].images.standard_resolution.url + "\"\n                  class=\"w-100 img-fluid\"\n                  alt=\"" + (data.data[x].caption.text ? data.data[x].caption.text : "Restaurante Porfirios") + "\"\n                />\n              </div>\n            ");
+          }
+        },
+        error: function error(data) {
+          console.log(data);
+          gallery.append("\n            <h3 class=\"text-center\">Las fotos de esta galer\xEDa no est\xE1n disponibles</h3>\n          ");
+        }
+      });
+    }
+  };
+
+  return {
+    init: init
+  };
+}();
+
+module.exports = Gallery;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

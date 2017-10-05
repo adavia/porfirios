@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Restaurante de comida mexicana contemporáneo')
+
 @section('content')
   <section class="main">
     <div class="container-fluid">

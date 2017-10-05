@@ -6,17 +6,42 @@
  */
 
 require('./bootstrap');
+var Gallery = require('./gallery');
 
-$(window).on('load', function () {
-  $('.cover').fadeOut(1000, function() {
-    $(this).remove();
-  });
-});
+// Using the module pattern for a jQuery feature
 
-$(document).on('click', '[data-behavior~=anchor-link]', function (event) {
-  if(window.location.hash) {
-    $('html, body').animate({
-      scrollTop: $(this.hash).offset().top
-    }, 500);
+var Home = (function() {
+  var body = $(".view-home");
+  var links = $("[data-behavior~=anchor-link]");
+  var cover = $(".cover");
+
+  var init = function() {
+    $(window).on("load", coverFadeOut);
+    if (body.length > 0) { scrollDown(); }
   }
-});
+
+  var coverFadeOut = function() {
+    cover.fadeOut(1000, function() {
+      $(this).remove();
+    });
+  }
+
+  var scrollDown = function() {
+    links.click(animateScroll);
+  }
+
+  var animateScroll = function(event) {
+    if ($(this.hash)) {
+      $("html, body").animate({
+        scrollTop: $(this.hash).offset().top
+      }, 500);
+    }
+  };
+
+  return {
+    init: init,
+  };
+})();
+
+Home.init();
+Gallery.init();

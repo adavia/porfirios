@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Eventos')
+
 @section('content')
   <section class="events">
     <div class="container-fluid">

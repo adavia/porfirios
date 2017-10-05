@@ -158,14 +158,7 @@ class HomeController extends Controller {
   }
 
   public function gallery() {
-    $items = [];
-
-    $client = new \GuzzleHttp\Client;
-    $url = sprintf("https://www.instagram.com/%s/media", "porfiriosrestaurante");
-    $response = $client->get($url);
-    $items = json_decode((string) $response->getBody(), true)["items"];
-
-    return view("home.gallery", compact("items"));
+    return view("home.gallery");
   }
 
   public function groups() {
